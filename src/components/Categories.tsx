@@ -1,4 +1,7 @@
+
 import styled from "styled-components"
+import { useCategorias } from "../hooks/useCategorias"
+import { useNavigate } from "react-router";
 
 const Ul = styled.div`
     
@@ -31,28 +34,20 @@ const Ul = styled.div`
 
 export default function Categories({ativa}: {ativa: boolean}) {
 
+    const [categorias] = useCategorias();
+    const navigate = useNavigate();
+    
     if (ativa) {
         return (
-             <Ul>
-                <li>
-                    <a href="">PROGRAMAÇÃO</a>
-                </li>
-                <li>
-                    <a href="">FRONT-END</a>
-                </li>
-                <li>
-                    <a href="">INFRAESTRUTURA</a>   
-                </li>
-                <li>
-                    <a href="">DESIGN & UX</a>
-                </li>
-                <li>
-                    <a href="">BUSINESS</a>
-                </li>
+            <Ul>
+                {categorias.map(categoria => (
+                     <li onClick={() => navigate(`/categorias/${categoria.slug}`)} key={categoria.id}>
+                        <a href={`/categorias/${categoria.slug}`}>{categoria.nome}</a>
+                    </li>
+                )
+                )}
             </Ul>
         )
-    }
-           
-       
-    }
+    }     
+}
    

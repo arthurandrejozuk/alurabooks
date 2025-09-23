@@ -119,7 +119,8 @@ export default function Header({openModal}:{openModal: () => void}) {
 
     const [ativa, setAtiva] = useState(false);
     const navigate = useNavigate()
-    const token = sessionStorage.getItem('token')
+    const token = sessionStorage.getItem('token');
+   
 
     const efetuarLogout = () => {
         sessionStorage.removeItem('token')

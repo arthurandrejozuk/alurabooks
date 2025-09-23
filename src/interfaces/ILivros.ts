@@ -1,6 +1,18 @@
+
+import type { IOpcaoCompra } from "./IOpcao"
+
+
 export interface ILivro {
-    img: string,
-    title: string,
-    desc: string,
-    preco: string
+    id: number
+    categoria: number
+    titulo: string
+    slug: string
+    descricao: string
+    isbn: string
+    numeroPaginas: number
+    publicacao: string
+    imagemCapa: string
+    autor: number
+    opcoesCompra: IOpcaoCompra[]
+    sobre: string
 }

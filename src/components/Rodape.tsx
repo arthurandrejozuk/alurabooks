@@ -6,6 +6,7 @@ const Section = styled.section`
     justify-content: space-around;
     padding: 40px;
     flex-wrap: wrap;
+    background-color: #85858517;
     h1{
         font-size: 24px;
     }

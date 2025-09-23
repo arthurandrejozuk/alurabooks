@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import type { ILivro } from "../interfaces/ILivros";
 import { useState } from "react";
+import { useNavigate } from "react-router";
+import Loader from "./Loader";
 
 const Container = styled.div`
     
@@ -33,6 +35,8 @@ const Section = styled.section`
         background-color: #EBECEE;
         flex-wrap: wrap;
         .livros{
+            display: flex;
+            gap: 12px;
             img{
                 width: 240px;
             }
@@ -141,42 +145,48 @@ const Section = styled.section`
 `
 
 
-export default function Destaque({ title, livros }: { title: string, livros: ILivro[] }) {
-    
-    const [livroFocado, setLivroFocado] = useState<ILivro>(livros[0])
+export default function Destaque({ title, livros, isLoading }: { title: string, livros?: ILivro[], isLoading: boolean }) {
+
+    const [livroFocado, setLivroFocado] = useState<ILivro>()
+    const livrosDestaque = livros?.slice(0, 3);
+
+    const navigate = useNavigate();
 
     return (
         <Container>
         <h1 className="titulo">{title}</h1>
+            {isLoading ? <Loader/> :
             <Section>
                     <div className="livros">
-                        {livros.map(item => (
-                            <img className="livro" onClick={() => setLivroFocado(item)} src={item.img} alt={item.title} />
+                        {livrosDestaque?.map(item => (
+                            <img className="livro" onClick={() => setLivroFocado(item)} src={item.imagemCapa} alt={item.titulo} />
                         ))}
-                    </div>
-                    <div className="info__livro">
+                </div>
+                {livroFocado ?   <div className="info__livro">
                         <h1 className="info__livro_sobre">
                             Sobre o livro:
                         </h1>
                         <div className="info__livro_title_desc">
                             <h3>
-                                {livroFocado?.title}
+                                {livroFocado?.titulo}
                             </h3>
                             <p>
-                                {livroFocado?.desc}
+                                {livroFocado?.descricao}
                             </p>
                         </div>
-                        <div className="info__livro_price">
+                        {/* <div className="info__livro_price">
                             <p>A partir de:</p>
-                            <h2>R${livroFocado?.preco}</h2>
-                        </div>
+                            <h2>R${livroFocado?.id}</h2>
+                        </div> */}
                         <div className="info__livro_icons">
                             <img src="/src/assets/Sacola.png" alt="" />
                             <img src="/src/assets/Favoritos.png" alt="" />
                         </div>
-                        <button className="button">Comprar</button>
-                    </div>
+                        <button onClick={() => navigate(`/livros/${livroFocado.slug}`)} className="button">Comprar</button>
+                    </div> : <></>}
+                  
             </Section>
+            }
         </Container>
     )
 }
