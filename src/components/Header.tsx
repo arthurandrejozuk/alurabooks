@@ -1,8 +1,9 @@
 
 import styled from "styled-components"
 import Categories from "./Categories";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
+import { ModalContext } from "../context/ModalContext";
 
 
 const HeaderStyled = styled.div`
@@ -115,8 +116,8 @@ const HeaderStyled = styled.div`
 
 `
 
-export default function Header({openModal}:{openModal: () => void}) {
-
+export default function Header() {
+    const { modal, setModal } = useContext(ModalContext);
     const [ativa, setAtiva] = useState(false);
     const navigate = useNavigate()
     const token = sessionStorage.getItem('token');
@@ -124,8 +125,11 @@ export default function Header({openModal}:{openModal: () => void}) {
 
     const efetuarLogout = () => {
         sessionStorage.removeItem('token')
-       navigate('/')
-        
+        navigate('/')
+    }
+
+    const lc = () => {
+        setModal(!modal);
     }
 
     return (
@@ -153,13 +157,13 @@ export default function Header({openModal}:{openModal: () => void}) {
             <div className="container__options_icon">
                 {token ?
                     <>         
-                        <a className="icon__option" href="/pedidos">
+                        <a  className="icon__option" href="/pedidos">
                             <img src="/src/assets/Group.png" alt="" />
                             <p>Minha sacola</p>
                         </a> 
                     </>
                     : 
-                    <a onClick={openModal} className="icon__option" href="#">
+                    <a onClick={lc} className="icon__option" href="#">
                         <img src="/src/assets/Group.png" alt="" />
                         <p>Minha sacola</p>
                     </a> 
@@ -175,7 +179,7 @@ export default function Header({openModal}:{openModal: () => void}) {
                         </a>
                     </>
                 :
-                <a onClick={openModal} className="icon__option" href="#">
+                <a onClick={lc} className="icon__option" href="#">
                     <img src="/src/assets/Vector.png" alt="" />
                     <p>Login</p>
                 </a>

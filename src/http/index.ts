@@ -3,7 +3,7 @@ import type { ICategoria } from "../interfaces/ICategoria";
 import type { ILivro } from "../interfaces/ILivros";
 
 const http = axios.create({
-    baseURL: "http://localhost:3000", 
+    baseURL: "http://localhost:8000", 
     headers: {
         Accept: 'application/json',
         Content: 'application/json'

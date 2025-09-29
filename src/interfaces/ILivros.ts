@@ -1,5 +1,7 @@
 
+import type { IAutor } from "./IAutor"
 import type { IOpcaoCompra } from "./IOpcao"
+import type { ITags } from "./ITags"
 
 
 export interface ILivro {
@@ -12,7 +14,8 @@ export interface ILivro {
     numeroPaginas: number
     publicacao: string
     imagemCapa: string
-    autor: number
+    autor: IAutor,
+    tags: ITags[]
     opcoesCompra: IOpcaoCompra[]
     sobre: string
 }

@@ -1,7 +1,7 @@
 
 import styled from "styled-components"
-import { useCategorias } from "../hooks/useCategorias"
 import { useNavigate } from "react-router";
+import useCategoriasQl from "../graphql/categorias/hooks";
 
 const Ul = styled.div`
     
@@ -34,13 +34,13 @@ const Ul = styled.div`
 
 export default function Categories({ativa}: {ativa: boolean}) {
 
-    const [categorias] = useCategorias();
+    const { data } = useCategoriasQl();
     const navigate = useNavigate();
     
     if (ativa) {
         return (
             <Ul>
-                {categorias.map(categoria => (
+                {data?.categorias.map(categoria => (
                      <li onClick={() => navigate(`/categorias/${categoria.slug}`)} key={categoria.id}>
                         <a href={`/categorias/${categoria.slug}`}>{categoria.nome}</a>
                     </li>

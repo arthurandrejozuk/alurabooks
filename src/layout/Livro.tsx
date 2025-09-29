@@ -2,12 +2,12 @@ import styled from "styled-components";
 import type { ILivro } from "../interfaces/ILivros";
 import { AbBotao, AbGrupoOpcoes, AbInputQuantidade } from "ds-alurabooks";
 import type { IOpcaoCompra } from "../interfaces/IOpcao";
-import { useState } from "react";
 
 const Section = styled.section`
     
 display: flex;
 flex-direction: row;
+flex-wrap: wrap;
 align-items: center;
 justify-content: center;
 gap: 32px;

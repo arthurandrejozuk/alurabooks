@@ -8,18 +8,16 @@ import Cadastro from "../components/Cadastro";
 import Rodape from "../components/Rodape";
 
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function MainLayout({ children }: { children: React.ReactNode }) {
 
-
-     const { modal, setModal, login } = useContext(ModalContext);
-  
+  const { login, modal, setModal } = useContext(ModalContext);
+     
   return (
-      
       <UsuarioProvider>
-          <Header openModal={() => setModal(!modal)} />
+          <Header />
           {login ? <Login open={modal} close={() => setModal(false)} /> : <Cadastro open={modal} close={() => setModal(false)}/>} 
           {children}
           <Rodape/>
-        </UsuarioProvider>
+      </UsuarioProvider>
     )
 }
