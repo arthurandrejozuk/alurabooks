@@ -1,5 +1,4 @@
 import { useParams } from "react-router"
-import Layout from "../layout/main";
 import Title from "../components/Title";
 import LivroLayout from "../layout/Livro";
 import Sobre from "../components/Sobre";
@@ -49,7 +48,7 @@ export default function Livro() {
     }
 
     return (
-            <Layout>
+            <>
             {loading ? <Loader /> :
                 <>
                         <Title texto={data?.livro.titulo || "Livro"} />
@@ -62,6 +61,6 @@ export default function Livro() {
                         {data?.livro.tags.map(tag => <AbTag texto={tag.nome} />)}
                         </TagsSection>
                     </> }
-            </Layout>
+            </>
     )
 }

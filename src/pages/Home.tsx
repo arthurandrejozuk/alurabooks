@@ -1,7 +1,6 @@
 
 import Banner from "../components/Banner";
 import Destaque from "../components/Destaque";
-import Main from "../layout/main";
 import BuscaCategoria from "../components/BuscaCategorias";
 import Newsletter from "../components/Newsletter";
 import ErrorMessage from "../components/ErrorMessage";
@@ -18,7 +17,7 @@ export default function HomePage() {
   }
 
   return (
-      <Main>
+      <>
         <Banner title="Já sabe por onde começar?" main={true} />
         {
           error ? <ErrorMessage text={`Alguma coisa deu errado: ${error.message}`} className="error_message"/> : 
@@ -29,6 +28,6 @@ export default function HomePage() {
         }
         <BuscaCategoria />
         <Newsletter />
-      </Main>
+      </>
   )
 }

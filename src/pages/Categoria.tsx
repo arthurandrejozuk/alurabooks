@@ -1,6 +1,5 @@
 
 import Title from "../components/Title";
-import Main from "../layout/main";
 import { obterCategoriaPorSlug } from "../http";
 import { useParams } from "react-router";
 import MiniCard from "../components/MiniCard";
@@ -79,7 +78,7 @@ const Categoria = () => {
     },[textoDaBusca])
 
     return (
-            <Main>
+            <>
             <Title texto={categoria?.nome ?? ""} />
             <form onSubmit={buscarLivros} style={{maxWidth: "60%", margin: "0 auto", textAlign: "center",marginTop: "16px"}} action="">
                 <AbCampoTexto onChange={setTextoDaBusca} value={textoDaBusca} placeholder="Buscar um livro"/>
@@ -89,7 +88,7 @@ const Categoria = () => {
                         <MiniCard livro={livro} />
                     ))}
                 </Section>
-            </Main>
+            </>
     )
 }
 
